@@ -1,5 +1,45 @@
-const TransactionDashboard = () => {
-  return <h1>TransactionDashboard</h1>;
+"use client";
+
+import {
+  Box,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useState } from "react";
+import TransactionChart from "../TransactionChart/TransactionChart";
+import {
+  DashboardContainer,
+  StyledFormControl,
+} from "./TransactionDashboard.styles";
+
+const SYMBOLS = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "ADAUSDT"] as const;
+
+const TransactionDashboardDashboard = () => {
+  const [symbol, setSymbol] = useState<string>(SYMBOLS[0]);
+
+  const handleSymbolChange = (event: SelectChangeEvent) => {
+    setSymbol(event.target.value);
+  };
+
+  return (
+    <DashboardContainer>
+      <Box>
+        <StyledFormControl fullWidth>
+          <InputLabel>Symbol</InputLabel>
+          <Select value={symbol} label="Symbol" onChange={handleSymbolChange}>
+            {SYMBOLS.map((symbol) => (
+              <MenuItem key={symbol} value={symbol}>
+                {symbol}
+              </MenuItem>
+            ))}
+          </Select>
+        </StyledFormControl>
+      </Box>
+      <TransactionChart />
+    </DashboardContainer>
+  );
 };
 
-export default TransactionDashboard;
+export default TransactionDashboardDashboard;
