@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/api/query-keys";
 import { axiosInstance } from "@/api/axios-instance";
 import { Trade } from "@/types/Trade";
+import { ApiConstants } from "@/constants/api-constants";
 
 type AggregatedData = Record<number, { volume: number; price: number }>;
 
@@ -58,7 +59,7 @@ export function useGetTradesForSymbol(symbol: string) {
     {
       queryKey: [queryKeys.binanceData, symbol],
       queryFn: () => getTradesForSymbol(symbol),
-      refetchInterval: 60000,
+      refetchInterval: ApiConstants.REFETCH_INTERVAL,
     }
   );
 
