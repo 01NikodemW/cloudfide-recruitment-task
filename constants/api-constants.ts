@@ -1,3 +1,3 @@
 export const ApiConstants = {
-  REFETCH_INTERVAL: 5000,
+  REFETCH_INTERVAL: 2000,
 };
