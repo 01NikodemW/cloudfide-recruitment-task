@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/api/query-keys";
 import { axiosInstance } from "@/api/axios-instance";
 
-const getData = async () => {
+const getData = async (symbol: string) => {
   const url = "/api/v3/trades";
 
   const params = {
-    symbol: "ETHUSDT",
+    symbol: symbol,
     limit: 10,
   };
 
@@ -44,12 +44,12 @@ const getData = async () => {
   }
 };
 
-export function useGetData() {
+export function useGetData(symbol: string) {
   const { data: binanceData = [], isFetching: isBinanceDataFetching } =
     useQuery<any[]>({
-      queryKey: [queryKeys.binanceData],
-      queryFn: () => getData(),
-      refetchInterval: 60000,
+      queryKey: [queryKeys.binanceData, symbol],
+      queryFn: () => getData(symbol),
+      refetchInterval: 5000,
     });
 
   return { binanceData, isBinanceDataFetching };

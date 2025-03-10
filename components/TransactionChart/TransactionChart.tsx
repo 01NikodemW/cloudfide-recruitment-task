@@ -3,16 +3,18 @@ import { TransactionChartWrapper } from "./TransactionChart.styles";
 import { CircularProgress } from "@mui/material";
 import { EChartsOption } from "echarts";
 import dynamic from "next/dynamic";
+import { FC } from "react";
 
 const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
-const TransactionChart = () => {
-  const { binanceData, isBinanceDataFetching } = useGetData();
-  console.log("binanceData ", binanceData);
+type TransactionChartProps = { symbol: string };
+
+const TransactionChart: FC<TransactionChartProps> = ({ symbol }) => {
+  const { binanceData, isBinanceDataFetching } = useGetData(symbol);
 
   const options: EChartsOption = {
     title: {
-      text: `BTC/USDT Price Chart`,
+      text: `${symbol} volume transactions`,
       left: "center",
     },
     tooltip: {
@@ -40,7 +42,7 @@ const TransactionChart = () => {
     yAxis: [
       {
         type: "value",
-        name: "Price USD",
+        name: "Volume",
       },
     ],
     series: [
@@ -55,7 +57,7 @@ const TransactionChart = () => {
 
   return (
     <TransactionChartWrapper>
-      {isBinanceDataFetching ? (
+      {binanceData.length === 0 && isBinanceDataFetching ? (
         <CircularProgress />
       ) : (
         <ReactECharts option={options} style={{ height: 400, width: "100%" }} />

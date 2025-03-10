@@ -37,7 +37,7 @@ const TransactionDashboardDashboard = () => {
           </Select>
         </StyledFormControl>
       </Box>
-      <TransactionChart />
+      <TransactionChart symbol={symbol} />
     </DashboardContainer>
   );
 };
