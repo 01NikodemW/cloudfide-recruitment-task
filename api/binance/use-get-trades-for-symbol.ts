@@ -21,7 +21,7 @@ const getTradesForSymbol = async (symbol: string): Promise<Trade[]> => {
 
   const params = {
     symbol: symbol,
-    limit: 10,
+    limit: 1000,
   };
 
   try {
@@ -55,13 +55,15 @@ const getTradesForSymbol = async (symbol: string): Promise<Trade[]> => {
 };
 
 export function useGetTradesForSymbol(symbol: string) {
-  const { data: trades = [], isFetching: isTradesFetching } = useQuery<Trade[]>(
-    {
-      queryKey: [queryKeys.binanceData, symbol],
-      queryFn: () => getTradesForSymbol(symbol),
-      refetchInterval: ApiConstants.REFETCH_INTERVAL,
-    }
-  );
+  const {
+    data: trades = [],
+    isFetching: isTradesFetching,
+    isError: isTradesFetchingError,
+  } = useQuery<Trade[]>({
+    queryKey: [queryKeys.binanceData, symbol],
+    queryFn: () => getTradesForSymbol(symbol),
+    refetchInterval: ApiConstants.REFETCH_INTERVAL,
+  });
 
-  return { trades, isTradesFetching };
+  return { trades, isTradesFetching, isTradesFetchingError };
 }

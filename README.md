@@ -10,6 +10,10 @@ NEXT_PUBLIC_API_ENTRYPOINT=https://api.binance.com
 Then run the app using
 npm run dev
 
+Or go to
+
+https://cloudfide-recruitment-task.vercel.app/
+
 
 Adnotation: 
 
@@ -20,3 +24,4 @@ I decided to use react query with refetching every 5s.
 This task could be also solved via using websockets to actively listen to API.
 
 However I decided that for this task (mainly because I've not worked a lot with websockets) to stick to refetching with small interval using react query
+
