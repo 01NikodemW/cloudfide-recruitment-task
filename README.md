@@ -1,11 +1,7 @@
 
 ## Getting Started
-
-
 Befor that add .env file containing API url:
 NEXT_PUBLIC_API_ENTRYPOINT=https://api.binance.com
-
-
 
 Then run the app using
 npm run dev
@@ -13,6 +9,13 @@ npm run dev
 Or go to
 
 https://cloudfide-recruitment-task.vercel.app/
+
+
+Testing:
+To run e2e tests execute
+
+npm run e2e-tests
+
 
 
 Adnotation: 

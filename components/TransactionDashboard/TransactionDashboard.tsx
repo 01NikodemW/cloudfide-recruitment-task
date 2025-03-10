@@ -31,7 +31,12 @@ const TransactionDashboardDashboard = () => {
       <Box>
         <StyledFormControl fullWidth>
           <InputLabel>Symbol</InputLabel>
-          <Select value={symbol} label="Symbol" onChange={handleSymbolChange}>
+          <Select
+            value={symbol}
+            label="Symbol"
+            onChange={handleSymbolChange}
+            data-cy="symbol-select"
+          >
             {SYMBOLS.map((symbol) => (
               <MenuItem key={symbol} value={symbol}>
                 {symbol}

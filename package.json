@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "e2e-tests": "cypress run"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -28,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^14.1.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "typescript": "^5"
