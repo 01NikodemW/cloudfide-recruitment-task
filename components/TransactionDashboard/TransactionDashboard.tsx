@@ -7,7 +7,7 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TransactionChart from "../TransactionChart/TransactionChart";
 import {
   DashboardContainer,
@@ -19,9 +19,12 @@ const SYMBOLS = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "ADAUSDT"] as const;
 const TransactionDashboardDashboard = () => {
   const [symbol, setSymbol] = useState<string>(SYMBOLS[0]);
 
-  const handleSymbolChange = (event: SelectChangeEvent) => {
-    setSymbol(event.target.value);
-  };
+  const handleSymbolChange = useCallback(
+    (event: SelectChangeEvent) => {
+      setSymbol(event.target.value);
+    },
+    [setSymbol]
+  );
 
   return (
     <DashboardContainer>
